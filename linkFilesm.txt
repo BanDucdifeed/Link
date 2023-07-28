@@ -1,2 +1,21 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+document.getElementById("sheetjsexport").addEventListener(
+	'click',
+	function() {
+		$('#bookingListTable').DataTable({
+			retrieve: true,
+			"pageLength": -1,
+		});
+		/* Create worksheet from HTML DOM TABLE */
+		var wb = XLSX.utils.table_to_book(document
+			.getElementById("bookingListTable"));
+		/* Export to file (start a download) */
+		XLSX.writeFile(wb, "SheetJSTable.xlsx");
+		autoSizeColumns(wb);
+
+	});
+
+			<button id="sheetjsexport">
+				<b>Export as XLSX</b>
+			</button>
